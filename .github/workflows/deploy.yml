@@ -27,7 +27,7 @@ jobs:
   publish:
     needs: build-and-test  # This job needs the build-and-test job to complete successfully before it runs
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  # This job runs if the branch ref is 'main'
+    if: github.ref == 'refs/heads/main'  
     permissions:
       contents: write
       packages: write
