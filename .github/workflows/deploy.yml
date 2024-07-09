@@ -27,13 +27,13 @@ jobs:
   publish:
     needs: build-and-test  # This job needs the build-and-test job to complete successfully before it runs
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  
-    permissions:
-      contents: write
-      packages: write
-      issues: write
-      pull-requests: write
-      id-token: write
+    # if: github.ref == 'refs/heads/main'  
+    # permissions:
+    #   contents: write
+    #   packages: write
+    #   issues: write
+    #   pull-requests: write
+    #   id-token: write
     steps:
       - uses: actions/checkout@v4
 
