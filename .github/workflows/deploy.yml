@@ -1,8 +1,7 @@
 name: CI/CD Workflow
 
 on:
-  pull_request:
-    types: [closed]  # This workflow is triggered when a pull request is closed
+  push # This workflow is triggered when a pull request is closed
 
 jobs:
   build-and-test:
@@ -19,6 +18,8 @@ jobs:
       # Install project dependencies
       - name: Install dependencies
         run: npm ci
+        working-directory: database
+
 
       # Uncomment below steps to run tests
       # - name: Run tests
@@ -27,7 +28,6 @@ jobs:
   publish:
     needs: build-and-test  # This job needs the build-and-test job to complete successfully before it runs
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  
     permissions:
       contents: write
       packages: write
@@ -59,9 +59,10 @@ jobs:
       # Bump version and create changelog
       - name: Bump Version and Create Changelog
         run: npm run release
-        working-directory: database
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        working-directory: database
+
       
       # Push changes to the repository
       - name: Push Changes
