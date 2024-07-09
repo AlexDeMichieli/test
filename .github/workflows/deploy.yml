@@ -59,6 +59,12 @@ jobs:
       - name: Install standard-version globally
         run: npm install -g standard-version
         working-directory: database
+      
+      - name: Set Git user
+        run: |
+          git config --global user.email "demichieli.alessandro@gmail.com"
+          git config --global user.name "alexdemichieli"
+        working-directory: database
 
       # Bump version and create changelog
       - name: Bump Version and Create Changelog
