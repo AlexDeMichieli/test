@@ -1,8 +1,7 @@
 name: CI/CD Workflow
 
 on:
-  pull_request:
-    types: [closed]  # This workflow is triggered when a pull request is closed
+  push  # This workflow is triggered when a pull request is closed
 
 jobs:
   build-and-test:
@@ -19,6 +18,7 @@ jobs:
       # Install project dependencies
       - name: Install dependencies
         run: npm ci
+        working-directory: database
 
       # Uncomment below steps to run tests
       # - name: Run tests
